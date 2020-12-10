@@ -2,20 +2,6 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-#  config.vm.define "proxy" do |proxy|
-#    proxy.vm.box = "centos/7"
-#    proxy.vm.network "forwarded_port", guest: 80, host: 80
-#    proxy.vm.hostname = 'proxy'
-#    proxy.vm.box_url = "centos/7"
-
-#    proxy.vm.network "private_network", ip: "192.168.1.10"
-#    proxy.vm.provision "shell", path:"nginx.sh" 
-#    proxy.vm.provider :virtualbox do |v|
-#      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-#      v.customize ["modifyvm", :id, "--memory", 512]
-#      v.customize ["modifyvm", :id, "--name", "proxy"]
-#    end
-#  end
   config.vm.define "db" do |db|
     db.vm.box = "generic/ubuntu1804"
     db.vm.network "forwarded_port", guest: 3306, host: 3306, auto_correct: true
