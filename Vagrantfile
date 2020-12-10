@@ -16,20 +16,6 @@ Vagrant.configure("2") do |config|
 #      v.customize ["modifyvm", :id, "--name", "proxy"]
 #    end
 #  end
-  config.vm.define "uroxy" do |uroxy|
-    uroxy.vm.box = "generic/ubuntu1804"
-    uroxy.vm.network "forwarded_port", guest: 80, host: 80
-    uroxy.vm.hostname = 'proxy'
-    uroxy.vm.box_url = "centos/7"
-
-    uroxy.vm.network "private_network", ip: "192.168.1.40"
-    uroxy.vm.provision "shell", path:"nginx-ubuntu.sh" 
-    uroxy.vm.provider :virtualbox do |v|
-      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-      v.customize ["modifyvm", :id, "--memory", 512]
-      v.customize ["modifyvm", :id, "--name", "uroxy"]
-    end
-  end
   config.vm.define "db" do |db|
     db.vm.box = "generic/ubuntu1804"
     db.vm.network "forwarded_port", guest: 3306, host: 3306, auto_correct: true
